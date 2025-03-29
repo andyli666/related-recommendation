@@ -21,9 +21,13 @@
                 <el-table-column prop="title" label="标题" />
                 <el-table-column label="操作">
                     <template #default="scope">
-                        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">
-                            Delete
-                        </el-button>
+                        <el-popconfirm width="160" title="确定删除此行吗？">
+                            <template #reference>
+                                <el-button size="small" type="danger">
+                                    Delete
+                                </el-button>
+                            </template>
+                        </el-popconfirm>
                     </template>
                 </el-table-column>
             </el-table>
@@ -116,9 +120,9 @@ const addItems = () => {
 
 }
 
-const handleDelete = (index: number, row: User) => {
-    console.log(index, row)
-}
+// const handleDelete = (index: number, row: User) => {
+//     console.log(index, row)
+// }
 </script>
 <style scoped>
 /* .el-form {
