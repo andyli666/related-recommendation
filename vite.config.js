@@ -15,4 +15,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://glyx.taoboss.com.cn',  // 后端API地址
+        changeOrigin: true,  // 是否修改请求头中的Origin
+        rewrite: (path) => path.replace(/^\/api/, ''), // 重写路径
+      },
+    },
+  },
 })

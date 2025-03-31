@@ -13,7 +13,8 @@
         </el-form-item>
         <el-form-item label="商品及sku">
             <div style="margin-bottom:0px">
-                <el-button type="primary" plain size="small" @click="addItems()">添加商品</el-button>
+                <el-button type="primary" plain size="small"
+                    @click="itemSelectRef.dialogVisible = true">添加商品</el-button>
             </div>
             <el-table :data="tableData" row-key="id" default-expand-all>
                 <el-table-column type="selection" width="55" />
@@ -21,7 +22,7 @@
                 <el-table-column prop="title" label="标题" />
                 <el-table-column label="操作">
                     <template #default="scope">
-                        <el-popconfirm width="160" title="确定删除此行吗？">
+                        <el-popconfirm width="160" title="确定删除此行吗？" placement="right">
                             <template #reference>
                                 <el-button size="small" type="danger">
                                     Delete
@@ -55,9 +56,13 @@
         </el-form-item>
     </el-form>
 
+    <ItemSelect ref="itemSelectRef" />
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, ref, useTemplateRef } from 'vue'
+import ItemSelect from './ItemSelect.vue'
+
+const itemSelectRef = useTemplateRef('itemSelectRef')
 
 // do not use same name with ref
 const form = reactive({
